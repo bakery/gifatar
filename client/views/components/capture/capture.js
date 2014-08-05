@@ -53,3 +53,13 @@ Template.capture.destroyed = function(){
         this.subGetCameraStream.unsubscribe();
     }
 };
+
+Template.capture.helpers({
+    cameraWidth : function(){
+        return ApplicationSettings.camera.width;
+    },
+
+    cameraHeight : function(){
+        return ApplicationSettings.camera.height;
+    }
+});
