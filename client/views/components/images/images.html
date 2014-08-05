@@ -1,5 +1,7 @@
 <template name="images">
-	{{> image }}
-	{{> image }}
-	{{> image }}
+	<ul class="captured-images">
+		{{#each images}}
+			<li>{{> image this }}</li>
+		{{/each}}
+	</ul>
 </template>
