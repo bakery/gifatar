@@ -6,7 +6,7 @@ Template.capture.created = function(){
         topic: 'get-camera-stream',
         callback: function(){
             Camera.getStream(
-                _.bind(Template.capture.onGotCameraStrem,template),
+                _.bind(Template.capture.onGotCameraStream,template),
                 function(error) {
                     alert('something went terribly wrong. sorry');
                 }
@@ -16,33 +16,58 @@ Template.capture.created = function(){
 
     this.subCaptureImage = postal.subscribe({
         topic: 'capture-image',
-        callback: function(data, envelope) {
-            alert('must capture image');
+        callback: _.bind(Template.capture.onCaptureImageRequest,this)
 
-            // do some advanced processing and come up with the pic
+        // function(data, envelope) {
+        //     alert('must capture image');
 
-            setTimeout(function(){
-                postal.publish({
-                    topic: 'image-captured',
-                    data : {
-                        url : 'http://cs313618.vk.me/v313618360/6722/2rnMHMn7Swc.jpg'
-                    }
-                });
-            }, 3000);
+        //     // do some advanced processing and come up with the pic
 
-        }
+        //     setTimeout(function(){
+        //         postal.publish({
+        //             topic: 'image-captured',
+        //             data : {
+        //                 url : 'http://cs313618.vk.me/v313618360/6722/2rnMHMn7Swc.jpg'
+        //             }
+        //         });
+        //     }, 3000);
+
+        // }
     });
 };
 
-Template.capture.onGotCameraStrem = function(stream){
-    var video = this.$('video')[0];
+Template.capture.onGotCameraStream = function(stream){
+    
+    this.__cameraStream = stream;
 
+    var video = this.$('video')[0];
     if (window.URL) {
         video.src = window.URL.createObjectURL(stream);
     } else {
         video.src = stream; // Opera support.
     }
 };
+
+Template.capture.onCaptureImageRequest = function(){
+    var video = this.$('video')[0],
+        canvas = this.$('canvas')[0],
+        ctx = canvas.getContext('2d'),
+        width = ApplicationSettings.camera.width, 
+        height = ApplicationSettings.camera.height;
+
+    if (this.__cameraStream) {
+        // Draw whatever is in the video element on to the canvas.
+        ctx.drawImage(video, 0, 0, width, height);  
+        // Create a data url from the canvas image.
+        dataURL = canvas.toDataURL('image/png');
+        
+        postal.publish({
+            topic: 'image-captured',
+            data : { url : dataURL }
+        });
+    }
+};
+
 
 Template.capture.destroyed = function(){
     if(typeof this.subCaptureImage !== 'undefined'){
