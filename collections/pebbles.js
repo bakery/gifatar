@@ -1,0 +1,1 @@
+// Pebbles = new Meteor.Collection('pebbles');

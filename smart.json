@@ -1,0 +1,8 @@
+{
+  "packages": {
+    "iron-router": {},
+    "scss": {},
+    "bourbon": {},
+    "bootstrap-3": {}
+  }
+}
