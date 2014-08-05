@@ -11,7 +11,7 @@ Template.images.created = function(){
             currentImages.push({});
             Session.set('captured-images', currentImages);
 
-            if(currentImages.length === 4){
+            if(currentImages.length === ApplicationSettings.framesPerGif){
                 alert('done with all the images. making gif now');
             }
         }

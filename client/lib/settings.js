@@ -1,0 +1,3 @@
+ApplicationSettings = {
+	framesPerGif : 2
+};
