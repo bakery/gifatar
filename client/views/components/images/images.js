@@ -4,17 +4,21 @@ Template.images.created = function(){
 
     this.imageCapturedSub = postal.subscribe({
         topic : 'image-captured',
-        callback : function(imageData){
-            //alert('images got a captured image');
+        callback : _.bind(function(imageData){
+            
 
             var currentImages = Session.get('captured-images');
             currentImages.push(imageData);
             Session.set('captured-images', currentImages);
 
-            // if(currentImages.length === ApplicationSettings.framesPerGif){
-            //     alert('done with all the images. making gif now');
-            // }
-        }
+
+            Deps.afterFlush(_.bind(function() {
+                if(currentImages.length === ApplicationSettings.framesPerGif){
+                    Animate.images(this.$('img.original'));
+                }
+            },this));
+
+        },this)
     });
 };
 
