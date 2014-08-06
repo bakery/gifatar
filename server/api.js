@@ -1,10 +1,10 @@
 Meteor.methods({
     saveGif : function(dataURL){
-        
+
         var settings = Meteor.settings.private || {};
 
         if(typeof settings.s3 === 'undefined'){
-            return new Meteor.Error(500, 'the app is not configured');
+            throw new Meteor.Error(500, 'the app is not configured');
         }
 
         var uploadAndCreate = function(callback){
@@ -45,6 +45,8 @@ Meteor.methods({
                 callback(null,Gif.insert({ url : req.url }));
                 
               } else {
+                
+                callback({ error : req });
                 // TODO: handle errors
               }
             }));
