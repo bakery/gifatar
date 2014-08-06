@@ -1,10 +1,17 @@
 Meteor.methods({
     saveGif : function(dataURL){
+        
+        var settings = Meteor.settings.private || {};
+
+        if(typeof settings.s3 === 'undefined'){
+            return new Meteor.Error(500, 'the app is not configured');
+        }
+
         var uploadAndCreate = function(callback){
             var client = Knox.createClient({
-                key: 'AKIAI7TDTETXZKFI5XYQ',
-                secret: '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',
-                bucket: 'gifatar'
+                key: settings.s3.key,
+                secret: settings.s3.secret,
+                bucket: settings.s3.bucket
             });
 
             var crypto = Npm.require('crypto');
