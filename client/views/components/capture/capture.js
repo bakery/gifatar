@@ -60,7 +60,9 @@ Template.capture.onCaptureImageRequest = function(){
         ctx.drawImage(video, 0, 0, width, height);  
         // Create a data url from the canvas image.
         dataURL = canvas.toDataURL('image/png');
-        
+    
+        console.log('frame data url', dataURL);
+
         postal.publish({
             topic: 'image-captured',
             data : { url : dataURL }

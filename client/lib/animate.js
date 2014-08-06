@@ -7,11 +7,25 @@ Animate = {
             imageWidth = ApplicationSettings.camera.width,
             imageHeight = ApplicationSettings.camera.height;
 
+        var strToDataURL = function(str, contentType, opt_isBinary) {
+            var isBinary = opt_isBinary != undefined ? opt_isBinary : true;
+            if (isBinary) {
+              return 'data:' + contentType + ';base64,' + self.btoa(str);
+            } else {
+              return 'data:' + contentType + ',' + str;
+            }
+        };
+
         gif.on('finished', function(blob) {
             if(typeof onComplete !== 'undefined'){
-                onComplete({
-                    url : URL.createObjectURL(blob)
-                });
+                var reader  = new FileReader();
+                reader.onloadend = function () {
+                    onComplete({
+                        url : URL.createObjectURL(blob),
+                        dataURL : reader.result
+                    });
+                };
+                reader.readAsDataURL(blob);
             }
         });
 

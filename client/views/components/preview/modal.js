@@ -6,6 +6,18 @@ Template.previewModal.created = function(){
             this.$('.modal-body').html('');
             UI.insert(preview, this.$('.modal-body')[0]);
             this.$('.modal').modal();
+
+            console.log('posting', data.dataURL);
+            console.log('size is', data.dataURL.length);
+
+            Meteor.call('saveGif', data.dataURL, function(error,data){
+                if(!error){
+                    alert('all good ' + data);
+                } else {
+                    alert('could not save the gif');
+                }
+            });
+
         },this)
     });
 };
