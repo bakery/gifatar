@@ -6,7 +6,11 @@ Template.previewModal.created = function(){
             this.$('.modal-body').html('');
             
             UI.insert(preview, this.$('.modal-body')[0]);
-            this.$('.modal').modal();
+            this.$('.modal').modal().on('hidden.bs.modal', function (e) {
+                postal.publish({
+                    topic : 'editor-reset'
+                });
+            });
 
             console.log('posting', data.dataURL);
             console.log('size is', data.dataURL.length);

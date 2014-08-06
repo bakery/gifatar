@@ -23,11 +23,22 @@ Template.images.created = function(){
 
         },this)
     });
+
+    this.editorResetSub = postal.subscribe({
+        topic : 'editor-reset',
+        callback : function(){
+            Session.set('captured-images', []);
+        }
+    });
 };
 
 Template.images.destroyed = function(){
     if(typeof this.imageCapturedSub !== 'undefined'){
         this.imageCapturedSub.unsubscribe();
+    }
+
+    if(typeof this.editorResetSub !== 'undefined'){
+        this.editorResetSub.unsubscribe();
     }
 };
 
