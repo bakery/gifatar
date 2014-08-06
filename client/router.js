@@ -12,7 +12,13 @@ Router.map(function () {
   this.route('editor', {
   	path: '/editor',
   	template: 'editor',
-  	controller : 'EditorController'
+  	controller: 'EditorController'
+  });
+
+  this.route('viewer', {
+    path: '/view/:id',
+    template: 'viewer',
+    controller: 'ViewerController'  
   });
 });
 
