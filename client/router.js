@@ -5,8 +5,8 @@ Router.configure({
 Router.map(function () {
   this.route('landing', {
     path: '/',
-    template: 'landing',
-    controller : 'LandingController'
+    template: 'editor',
+    controller : 'EditorController'
   });
 
   this.route('editor', {
