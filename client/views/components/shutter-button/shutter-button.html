@@ -1,4 +1,9 @@
 <template name="shutterButton">
-	<button class="get-camera">Camera</button>
-	<button class="get-pic">Click</button>
+	{{#if isCameraActive}}
+		{{#if canTakePictures}}
+		<button class="get-pic">Click</button>
+		{{/if}}
+	{{else}}
+		<button class="get-camera">Camera</button>
+	{{/if}}
 </template>

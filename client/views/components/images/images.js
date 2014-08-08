@@ -12,6 +12,11 @@ Template.images.created = function(){
 
             Deps.afterFlush(_.bind(function() {
                 if(currentImages.length === ApplicationSettings.framesPerGif){
+                    
+                    postal.publish({
+                        topic : 'all-images-in'
+                    });
+
                     Animate.images(this.$('img.original'), function(gif){
                         postal.publish({
                             topic : 'show-preview',

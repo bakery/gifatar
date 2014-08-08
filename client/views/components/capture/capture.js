@@ -38,6 +38,10 @@ Template.capture.created = function(){
 
 Template.capture.onGotCameraStream = function(stream){
     
+    postal.publish({
+        topic : 'camera-activated'
+    });
+
     this.__cameraStream = stream;
 
     var video = this.$('video')[0];
