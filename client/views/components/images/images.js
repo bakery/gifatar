@@ -10,21 +10,25 @@ Template.images.created = function(){
             currentImages.push(imageData);
             Session.set('captured-images', currentImages);
 
-            Deps.afterFlush(_.bind(function() {
-                if(currentImages.length === Meteor.settings.public.framesPerGif){
-                    
-                    postal.publish({
-                        topic : 'all-images-in'
-                    });
+            var that = this;
 
-                    Animate.images(this.$('img.original'), function(gif){
+            setTimeout(function(){
+                Deps.afterFlush(_.bind(function() {
+                    if(currentImages.length === Meteor.settings.public.framesPerGif){
+                        
                         postal.publish({
-                            topic : 'show-preview',
-                            data : gif
+                            topic : 'all-images-in'
                         });
-                    });
-                }
-            },this));
+
+                        Animate.images(this.$('img.original'), function(gif){
+                            postal.publish({
+                                topic : 'show-preview',
+                                data : gif
+                            });
+                        });
+                    }
+                },that));
+            }, 200);
 
         },this)
     });
