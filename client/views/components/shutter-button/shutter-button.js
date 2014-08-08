@@ -1,15 +1,11 @@
 Template.shutterButton.events({
     'click .get-camera' : function(){
-        Camera.getStream(
-            function(stream){
-                postal.publish({
-                    topic : 'get-camera-stream'
-                });
-            },
-            function(error) {
-                alert('something went terribly wrong. sorry');
-            }
-        );
+        
+        console.log('getting stream');
+
+        postal.publish({
+            topic : 'get-camera-stream'
+        });
     },
 
     'click .get-pic' : function(){
