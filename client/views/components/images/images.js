@@ -11,7 +11,7 @@ Template.images.created = function(){
             Session.set('captured-images', currentImages);
 
             Deps.afterFlush(_.bind(function() {
-                if(currentImages.length === ApplicationSettings.framesPerGif){
+                if(currentImages.length === Meteor.settings.public.framesPerGif){
                     
                     postal.publish({
                         topic : 'all-images-in'
@@ -50,7 +50,7 @@ Template.images.destroyed = function(){
 Template.images.helpers({
     images : function(){
         var capturedImages = Session.get('captured-images');
-        return  _.map(_.range(ApplicationSettings.framesPerGif), function(i){
+        return  _.map(_.range(Meteor.settings.public.framesPerGif), function(i){
             return capturedImages.length > i ? 
                 _.extend(capturedImages[i], { empty : false }) : { empty : true };
         });

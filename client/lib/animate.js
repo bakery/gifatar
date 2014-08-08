@@ -4,8 +4,8 @@ Animate = {
                 workers: 2,
                 quality: 10
             }),
-            imageWidth = ApplicationSettings.camera.width,
-            imageHeight = ApplicationSettings.camera.height;
+            imageWidth = Meteor.settings.public.camera.width,
+            imageHeight = Meteor.settings.public.camera.height;
 
         var strToDataURL = function(str, contentType, opt_isBinary) {
             var isBinary = opt_isBinary != undefined ? opt_isBinary : true;

@@ -56,8 +56,8 @@ Template.capture.onCaptureImageRequest = function(){
     var video = this.$('video')[0],
         canvas = this.$('canvas')[0],
         ctx = canvas.getContext('2d'),
-        width = ApplicationSettings.camera.width, 
-        height = ApplicationSettings.camera.height;
+        width = Meteor.settings.public.camera.width, 
+        height = Meteor.settings.public.camera.height;
 
     if (this.__cameraStream) {
         // Draw whatever is in the video element on to the canvas.
@@ -87,10 +87,10 @@ Template.capture.destroyed = function(){
 
 Template.capture.helpers({
     cameraWidth : function(){
-        return ApplicationSettings.camera.width;
+        return Meteor.settings.public.camera.width;
     },
 
     cameraHeight : function(){
-        return ApplicationSettings.camera.height;
+        return Meteor.settings.public.camera.height;
     }
 });
