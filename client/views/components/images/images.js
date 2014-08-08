@@ -49,6 +49,10 @@ Template.images.destroyed = function(){
 
 Template.images.helpers({
     images : function(){
-        return Session.get('captured-images');
+        var capturedImages = Session.get('captured-images');
+        return  _.map(_.range(ApplicationSettings.framesPerGif), function(i){
+            return capturedImages.length > i ? 
+                _.extend(capturedImages[i], { empty : false }) : { empty : true };
+        });
     }
 });

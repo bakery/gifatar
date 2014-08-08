@@ -1,4 +1,8 @@
 <template name="image">
-	<img class="thumb" src="{{url}}">
-	<img class="original" src="{{url}}">
+	{{#if empty}}
+		<img class="thumb" src="http://placehold.it/80x60">
+	{{else}}
+		<img class="thumb" src="{{url}}">
+		<img class="original" src="{{url}}">
+	{{/if}}
 </template>
