@@ -15,6 +15,15 @@ Template.shutterButton.events({
                 mode: 'manual'
             }
         });
+    },
+
+    'click .save-gif' : function(){
+        postal.publish({ topic : 'save-gif' });
+    },
+
+    'click .reset' : function(){
+        Session.set('shutter-preview-mode', false);
+        postal.publish({ topic : 'editor-reset' });
     }
 });
 
@@ -43,10 +52,22 @@ Template.shutterButton.created = function(){
             Session.set('can-take-pictures',true);
         }
     });
+
+    this.subLaunchPreview = postal.subscribe({
+        topic : 'show-preview',
+        callback : _.bind(function(data){
+            Session.set('shutter-preview-mode', true);
+        },this)
+    });
 };
 
 Template.shutterButton.destroyed = function(){
-    _.each([this.subCameraActivated,this.subAllImagesIn, this.subResetImages],
+    _.each([
+            this.subCameraActivated,
+            this.subAllImagesIn,
+            this.subResetImages,
+            this.subLaunchPreview
+        ],
         function(sub){
             if(typeof sub !== 'undefined'){
                 sub.unsubscribe();
@@ -62,3 +83,8 @@ Template.shutterButton.isCameraActive = function(){
 Template.shutterButton.canTakePictures = function(){
     return Session.get('can-take-pictures');
 };
+
+Template.shutterButton.previewMode = function(){
+    return Session.get('shutter-preview-mode');
+};
+

@@ -1,4 +1,13 @@
 <template name="capture">
-	<video autoplay class="video" width="{{cameraWidth}}" height="{{cameraHeight}}"></video>
-	<canvas class="capture-canvas" width="{{cameraWidth}}" height="{{cameraHeight}}"></canvas>
+	<div class="row {{modeClass}}">
+		<div class="col-md-12">
+			<video autoplay class="video" width="{{cameraWidth}}" height="{{cameraHeight}}"></video>
+	
+			{{#if previewUrl}}
+			<img src="{{previewUrl}}" class="preview" width="{{cameraWidth}}" height="{{cameraHeight}}">
+			{{/if}}
+
+			<canvas class="capture-canvas" width="{{cameraWidth}}" height="{{cameraHeight}}"></canvas>
+		</div>
+	</div>
 </template>

@@ -1,9 +1,24 @@
 <template name="shutterButton">
 	{{#if isCameraActive}}
+
+		{{#if previewMode}}
+			<button class="save-gif">Looks good</button>
+			<button class="reset">Try again</button>
+		{{/if}}
+
 		{{#if canTakePictures}}
-		<button class="get-pic">Click</button>
+			<button type="button" class="get-pic btn btn-default btn-lg">
+				<span class="glyphicon glyphicon-camera"></span>
+			</button>
 		{{/if}}
 	{{else}}
-		<button class="get-camera">Camera</button>
+		<button type="button" class="get-camera btn btn-default btn-lg">
+			<span class="glyphicon glyphicon-facetime-video"></span>
+		</button>
 	{{/if}}
 </template>
+
+
+
+
+

@@ -17,22 +17,33 @@ Template.capture.created = function(){
     this.subCaptureImage = postal.subscribe({
         topic: 'capture-image',
         callback: _.bind(Template.capture.onCaptureImageRequest,this)
+    });
 
-        // function(data, envelope) {
-        //     alert('must capture image');
+    this.subLaunchPreview = postal.subscribe({
+        topic : 'show-preview',
+        callback : _.bind(function(data){
+            Session.set('image-preview-url', data.dataURL);
+        },this)
+    });
 
-        //     // do some advanced processing and come up with the pic
+    this.subSaveGif = postal.subscribe({
+        topic : 'save-gif',
+        callback : _.bind(function(){
+            Meteor.call('saveGif', this.$('.preview').attr('src'), function(error,gifId){
+                if(!error){
+                    window.location.href = '/view/' + gifId;
+                } else {
+                    alert('could not save the gif');
+                }
+            });
+        },this)
+    });
 
-        //     setTimeout(function(){
-        //         postal.publish({
-        //             topic: 'image-captured',
-        //             data : {
-        //                 url : 'http://cs313618.vk.me/v313618360/6722/2rnMHMn7Swc.jpg'
-        //             }
-        //         });
-        //     }, 3000);
-
-        // }
+    this.subEditorReset = postal.subscribe({
+        topic : 'editor-reset',
+        callback : function(){
+            Session.set('image-preview-url','');
+        }
     });
 };
 
@@ -76,13 +87,18 @@ Template.capture.onCaptureImageRequest = function(){
 
 
 Template.capture.destroyed = function(){
-    if(typeof this.subCaptureImage !== 'undefined'){
-        this.subCaptureImage.unsubscribe();
-    }
-
-    if(typeof this.subGetCameraStream !== 'undefined'){
-        this.subGetCameraStream.unsubscribe();
-    }
+    _.each([
+                this.subLaunchPreview, 
+                this.subCaptureImage, 
+                this.subGetCameraStream,
+                this.subSaveGif
+            ],
+            function(sub) {
+                if(typeof sub !== 'undefined'){
+                    sub.unsubscribe();
+                }
+            }
+    );
 };
 
 Template.capture.helpers({
@@ -92,5 +108,13 @@ Template.capture.helpers({
 
     cameraHeight : function(){
         return Meteor.settings.public.camera.height;
+    },
+
+    previewUrl : function(){
+        return Session.get('image-preview-url');
+    },
+
+    modeClass : function(){
+        return Session.get('image-preview-url') ? 'preview-mode' : 'capture-mode';
     }
 });

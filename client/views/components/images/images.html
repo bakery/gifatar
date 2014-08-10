@@ -1,7 +1,11 @@
 <template name="images">
-	<ul class="captured-images">
-		{{#each images}}
-			<li>{{> image this }}</li>
-		{{/each}}
-	</ul>
+	<div class="row">
+		<div class="col-md-12 images-wrapper">
+			<ul class="captured-images">
+				{{#each images}}
+					<li>{{> image this }}</li>
+				{{/each}}
+			</ul>
+		</div>
+	</div>
 </template>
