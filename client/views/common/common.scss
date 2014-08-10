@@ -1,0 +1,35 @@
+body {
+	background-image: url('bg.png'); 
+}
+
+
+/* Panel overrides */
+
+.panel {
+	width: 600px;
+	overflow: hidden;
+	margin: auto;
+	bottom: 0;
+  	height: 517px;
+  	left: 0;
+  	position: absolute;
+  	top: 0;
+  	right: 0;
+}
+
+.panel-body {
+	padding: 0;
+	height: 450px;
+	overflow: hidden;
+}
+
+.logo {
+	position: absolute;
+	z-index: 1000;
+	width: 115px;
+	height: 58px;
+	background: {
+		image: url('logo.png');
+		size: 115px 58px;
+	}
+}

@@ -17,7 +17,8 @@ Template.shutterButton.events({
         });
     },
 
-    'click .save-gif' : function(){
+    'click .save-gif' : function(e, template){
+        template.$('.save-gif').attr('disabled','disabled');
         postal.publish({ topic : 'save-gif' });
     },
 

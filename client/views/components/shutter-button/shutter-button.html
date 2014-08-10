@@ -2,8 +2,10 @@
 	{{#if isCameraActive}}
 
 		{{#if previewMode}}
-			<button class="save-gif">Looks good</button>
-			<button class="reset">Try again</button>
+			<div class="btn-group btn-group-lg">
+      			<button type="button" class="btn btn-default save-gif">Looks good</button>
+				<button type="button" class="btn btn-default reset">Try again</button>
+      		</div>
 		{{/if}}
 
 		{{#if canTakePictures}}
