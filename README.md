@@ -1,11 +1,21 @@
-## Env
+## Environment (settings.json)
 
+```
 {
-	"private": {  
+	"private": {
 		"s3" : {
-			"key": "s3-key",
-			"secret": "s3-secret",
-			"bucket": "s3-bucket"
+			"key": "AKIAIKO6MGF6GO4OFFPQ", 
+			"secret": "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", 
+			"bucket": "gifatar"
+		} 
+	},
+
+	"public": {
+		"framesPerGif" : 4,
+		"camera" : {
+			"width" : 600,
+			"height" : 450
 		}
-	}
+	} 
 }
+```
