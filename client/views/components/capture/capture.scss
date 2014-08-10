@@ -3,5 +3,6 @@
 }
 
 .preview-mode {
+	transition: transform 0.5s ease-out;
 	transform: translate(0,-455px);
 }

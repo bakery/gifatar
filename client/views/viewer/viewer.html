@@ -2,10 +2,18 @@
 	<div class="panel panel-default">
 		<div class="panel-body text-center">
 			<div class="logo"></div>
-			<img src="{{imageUrl gif}}">
+			{{#if imageUrl}}
+				<img src="{{imageUrl}}">
+			{{/if}}
 		</div>
 		<div class="panel-footer text-center">
-			{{> share}}
+			<button type="button" class="btn-make btn btn-default btn-lg">
+		  		<span class="glyphicon glyphicon-star"></span> Make a gifatar
+			</button>
+			
+			<button type="button" class="btn-tweet btn btn-default btn-lg">
+		  		<span class="glyphicon glyphicon-send"></span> Share
+			</button>
 		</div>
 	</div>
 </template>

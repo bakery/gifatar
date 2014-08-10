@@ -1,8 +1,8 @@
 <template name="image">
 	{{#if empty}}
-		<img src="http://placehold.it/80x60" class="thumb img-thumbnail">
+		<!-- <img src="http://placehold.it/80x60" class="thumb img-thumbnail"> -->
 	{{else}}
-		<img class="thumb img-thumbnail" src="{{url}}">
+		<img class="thumb img-thumbnail animated bounceInUp" src="{{url}}">
 		<img class="original" src="{{url}}">
 	{{/if}}
 </template>

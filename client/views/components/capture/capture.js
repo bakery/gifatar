@@ -1,4 +1,6 @@
 Template.capture.created = function(){
+
+    Session.set('image-preview-url', '');
     
     var template = this;
 
@@ -38,35 +40,12 @@ Template.capture.created = function(){
                 },
                 function(error,gifId){
                     if(!error){
-                        window.location.href = '/view/' + gifId;
+                        Router.go('viewer', {id : gifId});
                     } else {
                         alert('could not save the gif');
                     }
                 }
             );
-
-            // Gif.insert({
-            //     _id : gifId,
-            //     dataURL : this.$('.preview').attr('src')
-            // }, function(error, data){
-            //     if(!error){
-            //         Router.go('/view/' + gifId);
-            //     } else {
-            //         console.log(error, data);
-            //     }
-            // });
-
-            // Meteor.call('createGif', {
-            //     _id : gifId,
-            //     dataURL : this.$('.preview').attr('src')
-            // }, function(error){
-            //     if(error) {
-            //         console.error(error);
-            //     }
-            // });
-
-            
-
         },this)
     });
 

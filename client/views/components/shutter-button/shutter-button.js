@@ -19,6 +19,8 @@ Template.shutterButton.events({
 
     'click .save-gif' : function(e, template){
         template.$('.save-gif').attr('disabled','disabled');
+        template.$('.reset').attr('disabled','disabled');
+
         postal.publish({ topic : 'save-gif' });
     },
 
@@ -29,6 +31,7 @@ Template.shutterButton.events({
 });
 
 Template.shutterButton.created = function(){
+    Session.set('shutter-preview-mode', false);
     Session.set('shutter-is-camera-active',false);
     Session.set('can-take-pictures',false);
 
