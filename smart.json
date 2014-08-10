@@ -5,6 +5,7 @@
     "bourbon": {},
     "bootstrap-3": {},
     "collection2": {},
-    "knox": {}
+    "knox": {},
+    "collection-hooks": {}
   }
 }

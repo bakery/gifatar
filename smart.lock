@@ -19,6 +19,9 @@
       },
       "knox": {
         "version": "0.8.5.2"
+      },
+      "collection-hooks": {
+        "version": "0.7.2"
       }
     },
     "packages": {
@@ -51,6 +54,11 @@
         "git": "https://github.com/ewindso/meteor-knox.git",
         "tag": "v0.8.5.2",
         "commit": "62c778c40f89884cb10cfd2097e614e01ca8b8cc"
+      },
+      "collection-hooks": {
+        "git": "https://github.com/matb33/meteor-collection-hooks.git",
+        "tag": "v0.7.2",
+        "commit": "261f61f07b371ae913463fba8964a9b93cab531b"
       },
       "iron-layout": {
         "git": "https://github.com/EventedMind/iron-layout.git",
