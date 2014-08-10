@@ -4,9 +4,9 @@
 {
 	"private": {
 		"s3" : {
-			"key": "AKIAIKO6MGF6GO4OFFPQ", 
-			"secret": "NenXRGXvY+1sQzgR9LC/Fs6OcbqKa9cXGJql5r0x", 
-			"bucket": "gifatar"
+			"key": "you-key", 
+			"secret": "your-secret", 
+			"bucket": "bucket-name"
 		} 
 	},
 
