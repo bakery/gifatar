@@ -4,6 +4,9 @@ ViewerController = RouteController.extend({
     },
 
     data: function () {
+
+    	console.log('got data', Gif.findOne({ _id : this.params.id }));
+
         return {
             gif : Gif.findOne({ _id : this.params.id })
         };
