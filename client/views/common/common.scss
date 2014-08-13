@@ -25,11 +25,26 @@ body {
 
 .logo {
 	position: absolute;
-	z-index: 1000;
+	// z-index: 1000;
 	width: 115px;
 	height: 58px;
 	background: {
 		image: url('logo.png');
 		size: 115px 58px;
 	}
+
+    left: 50%;
+    margin-left: -58px;
+    top: 30px;
+}
+
+footer {
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+    right: 0;
+
+    p { text-align: center; }
+    a, a:hover { color: #b75656; }
+    a:hover { text-decoration: none; }
 }
