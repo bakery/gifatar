@@ -1,3 +1,22 @@
 .images-wrapper {
 	margin-top: -75px;
 }
+
+.start-here {
+    position: absolute;
+    bottom: 75px;
+    left: 200px;
+    z-index: 1000;
+    width: 151px;
+    height: 145px;
+    background: {
+        image: url('start-here.png');
+        size: 151px 145px;
+    }
+    opacity: 1;
+
+    &.transparent {
+        transition: opacity 0.6s;
+        opacity: 0;
+    }
+}
